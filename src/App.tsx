@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import CreateTodoClass from "./pages/CreateTodoClass";
+import CreateTodoHooks from "./pages/CreateTodoHooks";
+import ManageTodosContext from "./pages/ManageTodosContext";
+import CreateTodosContext from "./pages/CreateTodosContext";
+import {TodoProvider} from "./context/TodoProvider";
+import CreateTodosMobx from "./pages/CreateTodosMobx";
+import ManageTodosMobx from "./pages/ManageTodosMobx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <TodoProvider>
+          <Routes>
+              <Route path="*" element={<CreateTodosMobx/>}/>
+              <Route path="/manage" element={<ManageTodosMobx/>}/>
+          </Routes>
+      </TodoProvider>
   );
 }
 
